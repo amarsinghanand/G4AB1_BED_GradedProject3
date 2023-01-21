@@ -23,16 +23,14 @@ public class TicketController {
 
 	// lists
 	@GetMapping("/lists")
-	public String listEmployees(Model model, @RequestParam(value = "searchText", required = false) String searchText) {
+	public String listTickets(Model model, @RequestParam(value = "searchText", required = false) String searchText) {
 		try {
 			List<Ticket> tickets = new ArrayList<Ticket>();
-
 			if (searchText == null) {
 				tickets = ticketService.getAllTickets();
 			} else {
 				tickets = ticketService.getTicketsContainingIgnoreCase(searchText);
 			}
-
 			model.addAttribute("tickets", tickets);
 		} catch (Exception e) {
 			model.addAttribute("message", e.getMessage());
