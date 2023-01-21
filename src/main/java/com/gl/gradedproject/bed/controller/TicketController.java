@@ -30,6 +30,7 @@ public class TicketController {
 				tickets = ticketService.getAllTickets();
 			} else {
 				tickets = ticketService.getTicketsContainingIgnoreCase(searchText);
+				model.addAttribute("searchText", searchText);
 			}
 			model.addAttribute("tickets", tickets);
 		} catch (Exception e) {

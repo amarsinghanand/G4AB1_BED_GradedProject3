@@ -24,8 +24,8 @@
 			<form th:action="@{/tickets/lists}">
 				<div class="row d-flex">
 					<div class="col-md-6 mt-2">
-						<div class="search">
-							<i class="fa fa-search"></i> <input id="keyword" type="search"
+						<div>
+							<i class="fa fa-times"></i> <input id="keyword" type="search"
 								name="searchText" th:value="${searchText}" required
 								class="form-control" placeholder="Enter keyword">
 						</div>
@@ -36,7 +36,6 @@
 				</div>
 			</form>
 		</div>
-
 
 		<table class="table table-bordered table-striped">
 			<thead class="thead-dark">
