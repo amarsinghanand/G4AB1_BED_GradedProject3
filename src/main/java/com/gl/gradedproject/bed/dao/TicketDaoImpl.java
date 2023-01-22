@@ -63,8 +63,8 @@ public class TicketDaoImpl implements TicketDao {
 		CriteriaBuilder cb = session.getCriteriaBuilder();
 		CriteriaQuery<Ticket> cq = cb.createQuery(Ticket.class);
 		Root<Ticket> from = cq.from(Ticket.class);
-		cq.select(from).where(cb.or(cb.like(from.get("title"), "%" + searchText + "%"),
-				cb.like(from.get("description"), "%" + searchText + "%")));
+		cq.select(from).where(cb.or(cb.like(cb.upper(from.get("title")), "%" + searchText.toUpperCase() + "%"),
+				cb.like(cb.upper(from.get("description")), "%" + searchText.toUpperCase() + "%")));
 		cq.orderBy(cb.asc(from.get("id")));
 		Query query = session.createQuery(cq);
 		return query.getResultList();
