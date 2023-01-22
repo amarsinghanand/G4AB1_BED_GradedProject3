@@ -22,7 +22,11 @@ public class TicketDaoImpl implements TicketDao {
 	@Override
 	public void saveOrUpdate(Ticket ticket) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		currentSession.saveOrUpdate(ticket);
+		if (ticket.getId() > 0L) {
+			currentSession.update(ticket);
+		} else {
+			currentSession.save(ticket);
+		}
 	}
 
 	@Override

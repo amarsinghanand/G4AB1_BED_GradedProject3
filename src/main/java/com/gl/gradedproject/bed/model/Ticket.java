@@ -17,7 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Ticket {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	@Column(name = "id", updatable = false, nullable = false)
 	private long id;
 	@Column(name = "title")
 	private String title;
@@ -26,7 +26,7 @@ public class Ticket {
 	@Column(name = "comment")
 	private String comment;
 	@CreationTimestamp
-	@Column(name = "createdOn")
+	@Column(name = "createdOn", updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdOn;
 
@@ -41,11 +41,10 @@ public class Ticket {
 		this.createdOn = new Date();
 	}
 
-	public Ticket(String title, String description, String comment, Date createdOn) {
+	public Ticket(String title, String description, String comment) {
 		this.title = title;
 		this.description = description;
 		this.comment = comment;
-		this.createdOn = new Date();
 	}
 
 	public long getId() {
@@ -85,6 +84,6 @@ public class Ticket {
 	}
 
 	public void setCreatedOn(Date createdOn) {
-		this.createdOn = new Date();
+		this.createdOn = createdOn;
 	}
 }
